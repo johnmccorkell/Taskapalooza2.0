@@ -1,0 +1,53 @@
+@model IEnumerable<TaskapaloozaBeta.Models.ToDoList>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    <a asp-controller="ToDoList" asp-action="Create" class="btn-xs btn-primary">Create New List</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CREATED)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CLOSED)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CREATED)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLOSED)
+            </td>
+            <td>
+                <a asp-controller="ToDoList" asp-action="Details" asp-route-id="@item.ID" class="btn-sm btn-info">Details</a>
+                <a asp-controller="ToDoList" asp-action="AddToDosToList" asp-route-id="@item.ID" class="btn-sm btn-success">Add Tasks</a> 
+                <a asp-controller="ToDoList" asp-action="Edit" asp-route-id="@item.ID" class="btn-sm btn-primary">Edit</a>              
+                <a asp-controller="ToDoList" asp-action="Delete" asp-route-id="@item.ID" class="btn-sm btn-danger">Delete</a>
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<a asp-controller="ToDoList" asp-action="Index" class="btn btn-primary">Back</a>

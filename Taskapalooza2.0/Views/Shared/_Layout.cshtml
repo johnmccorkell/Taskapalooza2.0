@@ -1,0 +1,63 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Taskapalooza</title>
+
+   
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body>
+<div id="sidebar">    
+    <ul class="nav">
+        <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+        <li><a asp-controller="ToDo" asp-action="Index">Tasks</a></li>
+        <li><a asp-controller="ToDoList" asp-action="Index">TaskLists</a></li>
+        <li><a asp-controller="Planning" asp-action="Index">Planning</a></li>
+    </ul>
+</div>
+
+<div id="wrapper">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <button id="sidebarToggle" class="btn btn-primary">
+                        <i class="fa fa-angle-left"></i>
+                    </button>
+                </li>
+            </ul>
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand text-center">Taskapalooza</a>
+            <ul class="nav navbar-nav navbar-right">                
+            </ul>
+        </div>
+    </nav>
+    <div id="main" class="container-fluid">
+
+        @RenderBody()
+
+        <div id="footer" class="container-fluid">
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+                <h4 class="text-center text-info">&copy; Taskapalooza</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/js/site.js"></script>
+    
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

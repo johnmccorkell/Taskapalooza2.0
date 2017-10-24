@@ -1,0 +1,61 @@
+@using TaskapaloozaBeta.Models
+
+@using TaskapaloozaBeta.ViewModels
+@model CreatePlanViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <form asp-action="Create" method="post">    
+       
+        <div class="form-group">
+            <h4>Tasks on : @Model.CurrentList.NAME</h4>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Task Name
+                        </th>
+                        <th>
+                            Task Status
+                        </th>
+                        <th>
+                            Close this task?
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ToDo item in Model.AssignedToDos)
+                    {
+                        
+                        <tr>
+                            <td>
+                                @item.NAME
+                                @Html.Hidden("item.ID", item.ID)
+                            </td>
+                            <td>
+                                <select asp-for="@item.STATUS" asp-items="@Model.StatusEnum"></select>                                
+                            </td>
+                            <td>
+                                <input type="checkbox"/>
+                            </td>
+                        </tr>
+                    }
+                </tbody>               
+            </table>            
+        </div>
+        @Html.Hidden("CurrentList", Model.CurrentList)
+        @Html.Hidden("AssignedToDos", Model.AssignedToDos)
+        <input type="submit" value="Save Changes" class="btn btn-success" />
+    </form>
+
+<a asp-controller="Planning" asp-action="List" class="btn btn-primary">Back</a>
+
+
+
+
+
+
+

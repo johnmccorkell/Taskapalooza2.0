@@ -1,0 +1,45 @@
+@model IEnumerable<TaskapaloozaBeta.Models.ToDoList>
+
+    @{
+        ViewData["Title"] = "List";
+    }
+
+    <h2>Select a TaskList</h2>
+
+    
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CREATED)
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CREATED)
+                    </td>
+                    
+                    <td>
+                        <a asp-controller="Planning" asp-action="Create" asp-route-id="@item.ID" class="btn-sm btn-primary">Plan</a>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-controller="TaskList" asp-action="Index" class="btn btn-primary">Back</a>
